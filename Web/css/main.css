@@ -1,0 +1,728 @@
+/***** MAIN SETTING ******/
+body, html {
+    font-family: 'Noto Sans KR', sans-serif;
+    height: 100%;
+    margin: 0;
+    user-select : none;
+}
+
+h2{
+    margin: 0;
+    text-align: center;
+    font-size: 4vw;
+    font-family: Montserrat, sans-serif;
+}
+
+a{
+    text-decoration-line: none;
+}
+
+
+
+.explain{
+    position: absolute;
+    opacity: 0;
+    color: white;
+    font-size: 2vw;
+    text-shadow: -1px 0 #00000088, 0 1px #00000088, 1px 0 #00000088, 0 -1px #00000088;
+}
+
+/** PAGE **/
+.page {
+    padding-top: 5%;
+    background-clip: padding-box;
+    width: 100%;
+    padding-bottom: 10%;
+}
+
+.page img{
+    -webkit-user-drag: none;
+    max-height: 100%;
+    max-width: 100%;
+  }
+
+
+/***** HEADER ******/
+header {
+    width: 100%;
+    background-color: #000000de;
+}
+
+.floating {
+    color: aliceblue;
+    position: fixed;
+    text-align: center;
+    top: 0;
+    z-index: 10;
+
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    width: 100%;
+    height: 100px;
+    align-items: center;
+    justify-content: center;
+}
+
+.floating a {
+    color: aliceblue;
+    text-decoration-line: none;
+}
+
+.title {
+    grid-column: 1/4;
+}
+
+.lists {
+    grid-column: 4/9;
+}
+
+/* The sidepanel menu */
+.sidepanel {
+    height: 100%; /* Specify a height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 11; /* Stay on top */
+    top: 0;
+    right: 0;
+    background-color: #111; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidepanel */
+  }
+  
+  /* The sidepanel links */
+  .sidepanel a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  /* When you mouse over the navigation links, change their color */
+  .sidepanel a:hover {
+    color: #f1f1f1;
+  }
+  
+  /* Position and style the close button (top right corner) */
+  .sidepanel .closebtn {
+    position: absolute;
+    top: 0;
+    right: 70%;
+    font-size: 36px;
+    margin-left: 5%;
+  }
+  
+  /* Style the button that is used to open the sidepanel */
+  .openbtn {
+    grid-column: 8/9;
+    width: 100%;
+    font-size: 40px;
+    cursor: pointer;
+    background-color: #00000000;
+    color: white;
+    border: none;
+  }
+
+/***** FOOTER ******/
+footer {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/***** SSCC ******/
+#SSCC.page  {
+    background-color: black;
+    padding-top: 100px;
+    padding-bottom: 0;
+}
+
+/** Collage **/
+.collage {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    width: 100%;
+    height: 100%;
+    grid-gap: 10px;
+}
+
+.gomtv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-image: url("../images/gomtv/1.jpg");
+    background-size: cover;
+    background-position: center;
+    grid-column: 1/3;
+    grid-row: 1/3;
+}
+
+.gomtv:hover {
+    transform: scale(1.1) translate(7%, 7%);
+    transition: .5s;
+    border: #6e6e6e;
+    filter: brightness(0.5);
+    -webkit-filter: brightness(0.5);
+}
+
+.gomtv:hover .explain{
+    opacity: 1;
+}
+
+.ict {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-image: url("../images/hwasungICT/1.jpg");
+    background-size: cover;
+    background-position: center;
+    grid-column: 4/7;
+    grid-row: 5/7;
+}
+
+.ict:hover {
+    transform: scale(1.1) translate(0%, -7%);
+    transition: .5s;
+    border: #6e6e6e;
+    filter: brightness(0.5);
+    -webkit-filter: brightness(0.5);
+}
+
+.ict:hover .explain{
+    opacity: 1;
+}
+
+.smartfarm_ideaton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-image: url("../images/smartfarm ideaton/1.jpg");
+    background-size: cover;
+    background-position: center;
+    grid-column: 1/4;
+    grid-row: 3/7;
+}
+
+.smartfarm_ideaton:hover {
+    transform: scale(1.05) translate(5%, -5%);
+    transition: .5s;
+    border: #6e6e6e;
+    filter: brightness(0.5);
+    -webkit-filter: brightness(0.5);
+}
+
+.smartfarm_ideaton:hover .explain{
+    opacity: 1;
+}
+
+.smartfarm {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-image: url("../images/smartfarm/1.jpg");
+    background-size: cover;
+    background-position: center;
+    grid-column: 3/6;
+    grid-row: 1/3;
+}
+
+.smartfarm:hover {
+    transform: scale(1.1) translate(0%, 7%);
+    transition: .5s;
+    border: #6e6e6e;
+    filter: brightness(0.5);
+    -webkit-filter: brightness(0.5);
+}
+
+.smartfarm:hover .explain{
+    opacity: 1;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    background-color: aliceblue;
+    grid-column: 4/6;
+    grid-row: 3/5;
+}
+
+.wiki {
+display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-image: url("../images/wiki/1.jpg");
+    background-size: cover;
+    background-position: center;
+    grid-column: 7/9;
+    grid-row: 5/7;
+}
+
+.wiki:hover {
+    transform: scale(1.1) translate(-7%, -7%);
+    transition: .5s;
+    border: #6e6e6e;
+    filter: brightness(0.5);
+    -webkit-filter: brightness(0.5);
+}
+
+.wiki:hover .explain{
+    opacity: 1;
+}
+
+.ap_ideaton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-image: url("../images/ap_tech ideaton/1.jpg");
+    background-size: cover;
+    background-position: center;
+    grid-column: 6/9;
+    grid-row: 1/5;
+    text-align: center;
+}
+
+.ap_ideaton:hover {
+    transform: scale(1.05) translate(-5%, 5%);
+    transition: .5s;
+    border: #6e6e6e;
+    filter: brightness(0.5);
+    -webkit-filter: brightness(0.5);
+}
+
+.ap_ideaton:hover .explain{
+    opacity: 1;
+}
+/** Slide **/
+* {
+    box-sizing: border-box;
+  }
+  
+  /* Position the image container (needed to position the left and right arrows) */
+  .slide {
+    margin-top: 50px;
+    position: relative;
+  }
+  
+  /* Hide the images by default */
+  .mySlides {
+    display: none;
+  }
+  
+  /* Add a pointer when hovering over the thumbnail images */
+  .cursor {
+    cursor: pointer;
+  }
+  
+  /* Next & previous buttons */
+  .prev,
+  .next {
+    cursor: pointer;
+    position: absolute;
+    top: 40%;
+    width: auto;
+    padding: 16px;
+    margin-top: -50px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  
+  /* Position the "next button" to the right */
+  .next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+  }
+    
+  /* Number text (1/3 etc) */
+  .numbertext {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+  }
+  
+  /* Container for image text */
+  .caption-container {
+    text-align: center;
+    background-color: #222;
+    padding: 2px 16px;
+    color: white;
+  }
+  
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  /* Six columns side by side */
+  .column {
+    float: left;
+    width: 16.66%;
+  }
+  
+  /* Add a transparency effect for thumnbail images */
+  .demo {
+    opacity: 0.6;
+  }
+  
+  .active,
+  .demo:hover {
+    opacity: 1;
+  }
+
+/***** About ******/
+#About.page {
+    background-color: black;
+}
+.about_grid {
+    padding-top: 100px;
+    padding-bottom: 50px;
+    display : grid;
+    grid-template-columns: repeat(8, 1fr);
+    place-items: center;
+}
+
+.about_image{
+    padding: 25px;
+    grid-column: 2/5;
+}
+
+.about_text{
+    padding: 25px;
+    color: white;
+    grid-column: 5/8;
+    text-align: left;
+    padding-bottom: 0;
+}
+
+    .about_text p {
+        font-size: 15pt;
+    }
+
+    /***** Study ******/
+    @import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+    .study_grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        height: 800px;
+    }
+
+    .study-card body {
+        background-color: grey;
+        font-family: Montserrat, sans-serif;
+    }
+
+
+
+/** CARD **/
+.card-container {
+    background-color: white;
+    border-radius: 5px;
+    color: #B3B8CD;
+    box-shadow: 0px 10px 20px -10px black;
+    padding-top: 30px;
+    text-align: center;
+    vertical-align: middle;
+    margin: 10%;
+}
+ 
+.study-contents {
+    position: absolute;
+    top: 200px;
+}
+
+.study-card h3 {
+    margin: 10px 0;
+    color: black;
+}
+
+.study-card h6 {
+    margin: 5px 0;
+    text-transform: uppercase;
+    color: black;
+}
+
+.study-card h4 {
+    font-size: 9px;
+    margin: 5px;
+    text-transform: uppercase;
+}
+
+.study-card p {
+    font-size: 0.8vw;
+    line-height: 1.5em;
+    color: #6d6a8a;
+}
+
+
+
+    .card-container .picture {
+        border-radius: 5%;
+        padding: 7px;
+        position: inherit;
+        width: 70%;
+    }
+
+
+
+.skills {
+    background-color: #1F1A36;
+    text-align: left;
+    padding: 15px;
+    margin-top: 30px;
+    width: inherit;
+}
+/*
+    .skills ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+
+        .skills ul li {
+            border: 1px solid #2D2747;
+            border-radius: 2px;
+            display: inline-block;
+            font-size: 0.1vw;
+            margin: 0 7px 7px 0;
+            padding: 7px;
+        }
+    */
+
+    .skills p {
+        border: 1px solid #2D2747;
+        border-radius: 2px;
+        display: inline-grid;
+        font-size: 0.01vw;
+        margin: 0 7px 7px 0;
+        padding: 7px;
+    }
+
+
+
+#study-title {
+    background-color: #222222;
+    background-clip: padding-box;
+    text-align: center;
+    color: whitesmoke;
+    padding-bottom: 0;
+    font-family: Montserrat, sans-serif;
+    margin-bottom: 5%;
+}
+
+
+/***** Benefit ******/
+
+#Benefit {
+    display: grid;
+    font-size: 3vw;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+}
+
+    #Benefit p {
+        line-height: 1.9em
+    }
+
+/***** Contact ******/
+
+#Contact.page {
+    background-color: #d3d3d3;
+    padding-bottom : 50px;
+}
+
+.contact_grid {
+
+    display : grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows:repeat(1, 1fr);
+    justify-items: center;
+}
+
+.contact_image {
+    grid-row: 1/2;
+    grid-column: 3/5;
+    margin: 0px auto;
+    position: relative
+  }
+  .hall {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    opacity: 0;
+  transition: opacity 0.5s linear;
+  }
+
+  .contact_image:hover .hall {
+    opacity: 1;
+  }
+
+.contact_way {
+    grid-row: 2/3;
+    grid-column: 4/6;
+}
+
+.contact_link {
+    grid-row: 2/3;
+    grid-column: 2/4;
+}
+
+.contact_grid a{
+    color:#020042;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.contact_grid a:visited{
+    color:gray;
+    text-decoration: none;
+}
+
+.contact_grid a:hover{
+    color:pink;
+    text-decoration: none;
+}
+.detail_contact{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: repeat(3, 1fr);
+}
+
+
+/***** Legacy ******/
+.grid-item2x {
+    background-image: url("../images/farewell/1.jpg");
+    background-size: cover;
+    background-position: center;
+    grid-column: 1/2;
+    grid-row: 2/5;
+}
+
+.grid-item5x {
+    grid-column: 3/6;
+    grid-row: 1/3;
+}
+
+.multi section{
+    column-count : 2;
+}
+.multi h2{
+  break-before : column;
+}
+.no-col{
+  column-span : all;
+}
+.ACT {
+    display: none;
+}
+/** media-query **/
+@media (max-width: 1000px) {
+    .floating{
+        border-bottom: solid aliceblue;
+    }
+    .title img{
+        display: none;
+    }
+
+    .lists{
+        display: none;
+    }
+    h2{
+        font-size: 17vw;
+    }
+    #SSCC.page{
+        height: none;
+    }
+    .collage{
+        display: none;
+    }
+    .ACT {
+        display: block;
+    }
+    
+    .about_grid {
+        display: block;
+        grid-template-columns: none;
+        grid-template-rows: none;
+        text-align: center;
+        height:100%;
+    }
+    .study_grid {
+        display: block;
+        grid-template-columns: none;
+        grid-template-rows: none;
+        height:100%;
+    }
+
+    .study_grid p {
+        font-size: 13pt;
+        line-height: 1.3em;       
+    }
+
+    .card-container {
+        margin: 10%;
+    }
+        .card-container p {
+            font-size: 3vw;
+        }
+    .contact_grid {
+        display: block;
+        grid-template-columns: none;
+        grid-template-rows: none;
+        text-align: center;
+    }
+    .detail_contact{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: repeat(3, 1fr);
+    }
+
+        
+    #Benefit p {
+        font-size: 5vw;
+        margin-bottom: 10%;
+    }
+    #Benefit h2 {
+        margin-bottom: 10%;
+    }
+    .contact_way{
+        margin-top: 10%;
+    }
+    .line-change {
+        display: none;
+    }
+
+}
+@media (min-width: 1000px) {
+    #SSCC.page{
+        height: 95%;
+    }
+    .openbtn{
+        display: none;
+    }
+}
+
+@media (min-width: 1460px) {
+    .line-change {
+        display: none;
+    }
+}
