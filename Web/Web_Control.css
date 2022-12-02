@@ -123,7 +123,8 @@ header {
 
 
 .container {
-  padding: 0px 0px 0px 10px;
+  padding-right: 10px;
+  padding-left: 10px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
 /* grid-template-columns: 1fr 1fr 1fr */
@@ -131,9 +132,9 @@ header {
 /* grid-template-columns: 200px 1fr */
 /* grid-template-columns: 100px 200px auto */
 
-grid-template-rows: 200px 200px 500px;
+/* grid-template-rows: 200px 200px 500px; */
 /* grid-template-rows: 1fr 1fr 1fr */
-/* grid-template-rows: repeat(3, 1fr) */
+  grid-template-rows: repeat(3, 1fr)
 /* grid-template-rows: 200px 1fr */
 /* grid-template-rows: 100px 200px auto */
   } 
