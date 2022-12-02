@@ -123,6 +123,7 @@ header {
 
 
 .container {
+  text-align: center;
   padding-right: 10px;
   padding-left: 10px;
   display: grid;
@@ -134,11 +135,18 @@ header {
 
 /* grid-template-rows: 200px 200px 500px; */
 /* grid-template-rows: 1fr 1fr 1fr */
-  grid-template-rows: repeat(3, 1fr)
+  /* grid-template-rows: repeat(6, 1fr) */
 /* grid-template-rows: 200px 1fr */
-/* grid-template-rows: 100px 200px auto */
+grid-template-rows: 100px 200px auto
   } 
 
+.picture {
+  height: 200px;
+}
+
+.item{
+  font-size: 20px;
+}
 /** media-query **/
 @media (max-width: 1000px) {
   .floating{
