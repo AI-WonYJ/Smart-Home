@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Smart Home</title>
+    <link rel="stylesheet" href="Web_Control.css">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+
+</head>
+
+<body oncontextmenu="return false" onselectstart="return false">
+  <!--Header-->
+  <header class="floating">
+      <div class="title" style="text-align: left; margin-left: 5%;">
+          <img src="images/logo.png" style="height:30px; margin-top: 8px;">
+          <a href="#Home" style="color:aliceblue; font-size: 40px; margin-left: 5%;">
+              <b>Smart Home</b>
+          </a>
+      </div>
+
+      <div class="lists" style="text-align: right;">
+          <span style="font-size: 20px; margin-right: 20px;">
+              <a href="#Home">Home</a>&nbsp;
+              <a href="#Door">Door</a>&nbsp;
+              <a href="#Room">Room</a>&nbsp;
+              <a href="#Kitchen">Kitchen</a>&nbsp;
+              <a href="#Living Room">Living Room</a>
+          </span>
+      </div>
+
+      <div id="mySidepanel" class="sidepanel">
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+          <a href="#Home">Home</a>
+          <a href="#Door">Door</a>
+          <a href="#Room">Room</a>
+          <a href="#Kitchen">Kitchen</a>
+          <a href="#Living Room">Living Room</a>
+      </div>
+      <button class="openbtn" onclick="openNav()">&#9776;</button>
+      <script src="js/sidebar.js"></script>
+  </header>
+  <main>
+    <div class="Page" id="Home">
+      <h2>Home</h2>
+    </div>
+    <div class="container">
+      <div class="item">A</div>
+      <div class="item">B</div>
+      <div class="item">C</div>
+      <div class="item">D</div>
+      <div class="item">E</div>
+      <div class="item">F</div>
+      <div class="item">G</div>
+      <div class="item">H</div>
+      <div class="item">I</div>
+    </div>
+  </main>
+</body>
+
+</html>
