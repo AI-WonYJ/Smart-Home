@@ -4,3 +4,4 @@ IR모션감지센서: https://www.hardcopyworld.com/?p=1141
 8xx32 도트 매트릭스: https://devicemart.blogspot.com/2019/04/8x32.html
 I2C LCD: https://codingrun.com/119
 4x4 키패드: https://m.blog.naver.com/dokkosam/221750933418
+포토 트랜지스터: https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=thank2400&logNo=222024839082
