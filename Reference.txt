@@ -1,1 +1,6 @@
 DHT11 온습도센서: http://jujc.yonam.ac.kr/lecture/ans_ict/aduino/5._dht11_senser.htm
+L9110 모터 드라이버: https://blog.naver.com/PostView.naver?blogId=roboholic84&logNo=221067084440&categoryNo=42&parentCategoryNo=0
+IR모션감지센서: https://www.hardcopyworld.com/?p=1141
+8xx32 도트 매트릭스: https://devicemart.blogspot.com/2019/04/8x32.html
+I2C LCD: https://codingrun.com/119
+4x4 키패드: https://m.blog.naver.com/dokkosam/221750933418
