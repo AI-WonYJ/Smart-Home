@@ -3,7 +3,7 @@ int pin = 2;
 DHT11 dht11(pin);
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
 }
 
 void loop() {
