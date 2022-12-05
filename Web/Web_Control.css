@@ -147,6 +147,7 @@ grid-template-rows: 100px 200px auto
 .item{
   font-size: 20px;
 }
+
 /** media-query **/
 @media (max-width: 1000px) {
   .floating{
