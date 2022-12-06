@@ -28,73 +28,79 @@ int Door_Servo_Pin = 11;
 int Door_Servo_Angle = 0;
 
 // Password 설정
-char* Password = "1234";
-int position = 0;
-int wrong = 0;
+int tru = 0;
+int count = 0;
+char PW[4] {'1', '2', '3', '4'};
 
 void setup() {
   Serial.begin(115200);  // 아두이노 속도 115200으로 Serial 통신 시작
   lcd.begin();  // LCD 작동 시작
   lcd.clear();  // LCD 출력창 초기화
   myServo.attach(Door_Servo_Pin);
-  setLocked(true);
+  Fa();
   delay(500);
 }
 
 void loop() {
-  lcd.home();
-  lcd.print("Enter a Password");
-  char key = keypad.getKey();  // 4x4 키패드에 입력된 값을 key변수에 저장
-  Serial.println(position, wrong);
-  Serial.println(key);
-  if ((key >= "0" && key <="9") || (key >= "A" && key <="D") || (key == "*" || key == "#")) {
-    if(key == "*" || key == "#") {
-      position = 0;
-      wrong = 0;
-      setLocked(true);
-    } else if (key = Password[position]) {
-      position++;
-      wrong = 0;
-    } else if (key != Password[position]) {
-      position = 0;
-      setLocked(true);
-      wrong++;
+  char key = keypad.getKey();
+  if (key) {
+    Serial.println(key);
+    lcd.setCursor(LCD_COL, 1);
+    lcd.print(key);
+    LCD_COL++ ;
+    if(key == PW[count]) {
+      count++;
+      tru++;
+    } else if(key == '#') {
+      re();
+      tru = 0;
+      count = 0;
+    } else {
+      count++;
     }
-    if (position == 4) {
-      setLocked(false);
-    }
-    if (wrong == 4) {
-      Serial.println("4회 오류");
-      wrong = 0;
-    }    
   }
-  delay(100);
-
-
-  // if(key) {  // 4x4 키패드에 입력이 들어오면
-  //   Input_Password[LCD_COL] += key;
-  //   Serial.println(Input_Password);
-  //   lcd.setCursor(LCD_COL, 1);
-  //   lcd.print(key);
-  //   LCD_COL += 1;
-  //   Serial.println(key);  // Serial Monitor에 출력
-  // }
-  // if(Input_Password == Password) {
-  //   myServo.write(100);
-  //   delay(15);    
-  // } else {
-  //   myServo.write(0);
-  //   delay(15);
-  // }
-  // delay(10);
+  if (count == 4){
+    if(tru == 4) {
+      Su();
+    } else {
+      Fa();
+    }
+    tru = 0;
+    count = 0;
+  }
 }
 
-void setLocked(int locked) {
-  if(locked) {
-    myServo.write(0);
-    Serial.println("Locked");
-  } else {
-    myServo.write(100);
-    Serial.println("UnLocked");
-  }
+void Su() {
+  myServo.write(100);
+  Serial.println("Open the door");
+  lcd.clear();
+  lcd.home();
+  lcd.print("Open the door");
+  lcd.setCursor(0, 1);
+  lcd.print("Welcome!");
+  delay(3000);
+  Fa();
+}
+
+void Fa() {
+  myServo.write(0);
+  Serial.println("close the door");
+  lcd.clear();
+  lcd.home();
+  lcd.print("Close the door");
+  lcd.setCursor(0, 1);
+  lcd.print("Enter:");
+  LCD_COL = 7;
+}
+
+void re() {
+  tru = 0;
+  count = 0;
+  Serial.println("password reset");
+  lcd.clear();
+  lcd.home();
+  lcd.print("ReEnter Password");
+  lcd.setCursor(0, 1);
+  lcd.print("Enter:");
+  LCD_COL = 7;
 }
