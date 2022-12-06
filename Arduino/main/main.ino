@@ -1,96 +1,100 @@
-#include "LedControl.h" // 8x32 도트 매트릭스 라이브러리
-#include <DHT11.h>  // 온습도센서 라이브러리
+# include <Keypad.h>  // 4x4 키패드 작동 헤더파일
+#include <LiquidCrystal_I2C.h>  // I2C_LCD 작동 헤더파일
+#include <Servo.h>  // 서보모터 작동 헤더파일
 
-LedControl lc=LedControl(12,11,10,4); // Din 핀을 12번, ClK핀을 11번 CS핀을 10번에 연결, 매트릭스는 4개를 사용 선언
-int num;
+// 4x4 키패드 설정
+const byte ROWS = 4;  // 행 개수 정의
+const byte COLS = 4;  // 열 개수 정의
 
-int pin = 2;  // 온습도 센서 Serial핀을 2번 핀과 연결
-DHT11 dht11(pin);  // 온습도 센서 핀으로 설정
+char keys[ROWS][COLS] = {  // 행과 열 정의
+  {'1', '2', '3', 'A'},
+  {'4', '5', '6', 'B'},
+  {'7', '8', '9', 'C'},
+  {'*', '0', '#', 'D'}
+};
+
+byte rowPins[ROWS] = {29, 28, 27, 26};  // 행 연결 핀 정의
+byte colPins[COLS] = {25, 24, 23, 22};  // 열 연결 핀 정의
+
+Keypad keypad = Keypad( makeKeymap (keys), rowPins, colPins, ROWS, COLS);  // 키패드 오브젝트 생성
+
+// LCD 통신 설정
+LiquidCrystal_I2C lcd(0x27, 16, 2);  // I2C 통신 설정
+int LCD_ROW, LCD_COL = 0;  // LCD 출력 위치 저장 함수
+
+// 서보모터 작동 설정
+Servo myServo;
+int Door_Servo_Pin = 11;
+int Door_Servo_Angle = 0;
+
+// Password 설정
+char* Password = "1234";
+int position = 0;
+int wrong = 0;
 
 void setup() {
-  Serial.begin(115200);
-  for(num=0; num<4; num++) { // 매트릭스 0번부터 3번까지 세팅
-    lc.shutdown(num,false); // 0~3번까지 매트릭스 절전모드 해제
-    lc.setIntensity(num,8); // 매트릭스의 밝기 선언 0~15의 수
-    lc.clearDisplay(num); // 매트릭스 led를 초기화
-  }
-}
-
-
-void matrix() {  // matrix 함수 선언
-  // 한글 '매'를 이진수로 배열 선언
-  byte m[8]={
-    B00000101,
-    B00000101,
-    B11110101,
-    B10010111,
-    B10010101,
-    B11110101,
-    B00000101,
-    B00000101
-  };
-  // 한글 '트'를 이진수로 배열 선언
-  byte t[8]={
-    B00111100,
-    B00100000,
-    B00111100,
-    B00100000,
-    B00111100,
-    B00000000,
-    B01111110,
-    B00000000
-    };
-  // 한글 '릭'를 이진수로 배열 선언
-  byte r[8]={
-    B01111010,
-    B00001010,
-    B01111010,
-    B01000010,
-    B01111010,
-    B00000000,
-    B00111110,
-    B00000010
-    };
-    // 한글 '스'를 이진수로 배열 선언
-    byte x[8]={
-      B00000000,
-      B00001000,
-      B00010100,
-      B00100010,
-      B01000001,
-      B00000000,
-      B01111111,
-      B00000000
-      };
-    // lc.setRow 함수는 행(Row) 기준으로 도트매트릭스를 제어 lc.setRow(matrix_number,Row,value)
-    for(int j=0; j<8; j++) {
-      lc.setRow(3,j,m[j]); // 0번째 매트릭스에서 '매'출력
-      lc.setRow(2,j,t[j]); // 1번째 매트릭스에서 '트'출력
-      lc.setRow(1,j,r[j]); // 2번째 매트릭스에서 '릭'출력
-      lc.setRow(0,j,x[j]); // 3번째 매트릭스에서 '스'출력
- }
- delay(1000);
+  Serial.begin(115200);  // 아두이노 속도 115200으로 Serial 통신 시작
+  lcd.begin();  // LCD 작동 시작
+  lcd.clear();  // LCD 출력창 초기화
+  myServo.attach(Door_Servo_Pin);
+  setLocked(true);
+  delay(500);
 }
 
 void loop() {
-  matrix();
-  for(num=0; num<4; num++) {  // 4개의 매트릭스led 초기화
-  lc.clearDisplay(num);
+  lcd.home();
+  lcd.print("Enter a Password");
+  char key = keypad.getKey();  // 4x4 키패드에 입력된 값을 key변수에 저장
+  Serial.println(position, wrong);
+  Serial.println(key);
+  if ((key >= "0" && key <="9") || (key >= "A" && key <="D") || (key == "*" || key == "#")) {
+    if(key == "*" || key == "#") {
+      position = 0;
+      wrong = 0;
+      setLocked(true);
+    } else if (key = Password[position]) {
+      position++;
+      wrong = 0;
+    } else if (key != Password[position]) {
+      position = 0;
+      setLocked(true);
+      wrong++;
+    }
+    if (position == 4) {
+      setLocked(false);
+    }
+    if (wrong == 4) {
+      Serial.println("4회 오류");
+      wrong = 0;
+    }    
   }
-  int err;
-  float temp, humi;
-  if((err=dht11.read(humi, temp)) == 0) {
-    Serial.pirnt("Temperature: ");
-    Serial.print(temp);
-    Serial.print(" humidity:");
-    Serial.print(humi);
-    Serial.println();
+  delay(100);
+
+
+  // if(key) {  // 4x4 키패드에 입력이 들어오면
+  //   Input_Password[LCD_COL] += key;
+  //   Serial.println(Input_Password);
+  //   lcd.setCursor(LCD_COL, 1);
+  //   lcd.print(key);
+  //   LCD_COL += 1;
+  //   Serial.println(key);  // Serial Monitor에 출력
+  // }
+  // if(Input_Password == Password) {
+  //   myServo.write(100);
+  //   delay(15);    
+  // } else {
+  //   myServo.write(0);
+  //   delay(15);
+  // }
+  // delay(10);
+}
+
+void setLocked(int locked) {
+  if(locked) {
+    myServo.write(0);
+    Serial.println("Locked");
+  } else {
+    myServo.write(100);
+    Serial.println("UnLocked");
   }
-  else {
-    Serial.println();
-    Serial.print("Error No: ");
-    Serial.print(err);
-    Serial.println():
-  }
-  delay(1000);
 }
