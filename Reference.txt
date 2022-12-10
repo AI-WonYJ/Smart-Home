@@ -7,3 +7,21 @@ I2C LCD: https://codingrun.com/119
 포토 트랜지스터: https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=thank2400&logNo=222024839082
 서보모터: https://www.basic4mcu.com/bbs/board.php?bo_table=gac&wr_id=4350
 도어락: https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=icbanq&logNo=221053467798
+
+
+  // if(key) {  // 4x4 키패드에 입력이 들어오면
+  //   Input_Password[LCD_COL] += key;
+  //   Serial.println(Input_Password);
+  //   lcd.setCursor(LCD_COL, 1);
+  //   lcd.print(key);
+  //   LCD_COL += 1;
+  //   Serial.println(key);  // Serial Monitor에 출력
+  // }
+  // if(Input_Password == Password) {
+  //   myServo.write(100);
+  //   delay(15);    
+  // } else {
+  //   myServo.write(0);
+  //   delay(15);
+  // }
+  // delay(10);
