@@ -7,6 +7,7 @@ I2C LCD: https://codingrun.com/119
 포토 트랜지스터: https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=thank2400&logNo=222024839082
 서보모터: https://www.basic4mcu.com/bbs/board.php?bo_table=gac&wr_id=4350
 도어락: https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=icbanq&logNo=221053467798
+74HC595 & 7 Segment Display: https://blog.naver.com/PostView.nhn?blogId=damtaja&logNo=220448940594
 
 
   // if(key) {  // 4x4 키패드에 입력이 들어오면
