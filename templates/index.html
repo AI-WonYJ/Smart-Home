@@ -2,11 +2,12 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Smart Home</title>
-    <link rel="stylesheet" href="Web_Control.css">
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="refresh" content="1">
+  <title>Smart Home</title>
+  <link rel="stylesheet" href="static/css/1main.css">
+  <link rel="icon" type="image/png" sizes="16x16" href="static/images/favicon.png">
 
 </head>
 
@@ -14,7 +15,6 @@
   <!--Header-->
   <header class="floating">
       <div class="title" style="text-align: left; margin-left: 5%;">
-          <img src="images/logo.png" style="height:30px; margin-top: 8px;">
           <a href="#Home" style="color:aliceblue; font-size: 40px; margin-left: 5%;">
               <b>Smart Home</b>
           </a>
@@ -39,31 +39,167 @@
           <a href="#Living Room">Living Room</a>
       </div>
       <button class="openbtn" onclick="openNav()">&#9776;</button>
-      <script src="js/sidebar.js"></script>
+      <script src="/static/js/sidebar.js"></script>
   </header>
   <main>
     <div class="Page" id="Home">
       <h2>Home</h2>
+      <div class="Home_grid">
+        <div class="item">온도</div>
+        <div class="item">습도</div>
+        <div class="item">실내 공기질</div>
+        <div class="item">문 앞</div>
+        <div class="pic"><img class="Home-Picture" src="static/images/Temp/온도자름.png"></div>
+        <div class="pic"><img class="Home-Picture" src="static/images/Hum/매우 많음.png"></div>
+        <div class="pic"><img class="Home-Picture" src="static/images/Air/보통.png"></div>
+        {% if Front == 0%}
+        <div class="pic"><img class="Home-Picture" src="static/images/Out/0.png"></div>
+        {% else %}
+        <div class="pic"><img class="Home-Picture" src="static/images/Out/1.png"></div>
+        {% endif %}
+
+        <div class="HOME_Data">{{Temperature}}℃</div>
+        <div class="HOME_Data">{{Humidity}}%</div>
+        <div class="HOME_Data">보통<br><div class="Serve_Data">CO₂: 430</div></div>
+
+        {% if Front == 0%}
+        <div class="HOME_Data">외부 안전</div>
+        {% else %}
+        <div class="HOME_Data">사람 감지</div>
+        {% endif %}
+
+        <div class="item">현관문</div>
+        <div class="item">창문</div>
+        <div class="item">에어컨</div>
+        <div class="item">TV</div>
+        {% if DoorLock == 0%}
+        <div class="pic"><img class="Home-Picture" src="static/images/Door/0.png"></div>
+        {% else %}
+        <div class="pic"><img class="Home-Picture" src="static/images/Door/1.png"></div>
+        {% endif %}
+        {% if Door == 0%}
+        <div class="pic"><img class="Home-Picture" src="static/images/Window/0.png"></div>
+        {% else %}
+        <div class="pic"><img class="Home-Picture" src="static/images/Window/1.png"></div>
+        {% endif %}
+        {% if Motor == 0%}
+        <div class="pic"><img class="Home-Picture" src="static/images/Air-Conditioner/0.png"></div>
+        {% else %}
+        <div class="pic"><img class="Home-Picture" src="static/images/Air-Conditioner/공기순환.png"></div>
+        {% endif %}
+        {% if Channel == 0%}
+        <div class="pic"><img class="Home-Picture" src="/static/images/TV/0.png"></div>
+        {% else %}
+        <div class="pic"><img class="Home-Picture" src="/static/images/TV/1.png"></div>
+        {% endif %}
+
+        {% if DoorLock == 0%}
+        <div class="HOME_Data">닫힘</div>
+        {% else %}
+        <div class="HOME_Data">열림</div>
+        {% endif %}
+
+        {% if Door == 0%}
+        <div class="HOME_Data">닫힘</div>
+        {% else %}
+        <div class="HOME_Data">열림</div>
+        {% endif %}
+
+        {% if Motor == 0%}
+        <div class="HOME_Data">꺼짐<br></div>
+        {% else %}
+        <div class="HOME_Data">작동<br><div class="Serve_Data2">공기순환모드</div></div>
+        {% endif %}
+        {% if Channel == 0%}
+          <div class="HOME_Data">꺼짐</div>
+        {% else %}
+          <div class="HOME_Data">켜짐<br><div class="Serve_Data2">채널: {{Channel}}</div></div>
+        {% endif %}
+      </div>
     </div>
-    <div class="container">
-      <div class="item">온도</div>
-      <div class="item">습도</div>
-      <div class="item">공기질</div>
-      <div class="item"><img class="picture" src="image\Temp\온도자름.png"></div>
-      <div class="item"><img class="picture" src="image\Hum\보통.png"></div>
-      <div class="item"><img class="picture" src="image\Air\보통.png"></div>
-      <div class="item">12℃</div>
-      <div class="item">56%</div>
-      <div class="item">보통</div>
-      <div class="item">현관문</div>
-      <div class="item">창문</div>
-      <div class="item">화재</div>
-      <div class="item"><img class="picture" src="image\Door\현관문 열림.png"></div>
-      <div class="item"><img class="picture" src="image\Window\창문 열림.png"></div>
-      <div class="item"><img class="picture" src="image\Fire\화재 없음.png"></div>
-      <div class="item">열림</div>
-      <div class="item">열림</div>
-      <div class="item">화재 안전</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+    <div class="Page" id="Door">
+      <h2>Door</h2>
+      <div class="Door_grid">
+        <div class="item">현관문</div>
+        <div class="item">보안</div>
+        <div class="item">마지막 출입</div>
+        <div class="item"><img class="picture" src="static/images/Door/현관문 열림.png"></div>
+        <div class="item"><img class="picture" src="static/images/Window/창문 열림.png"></div>
+        <div class="item"><img class="picture" src="static/images/Fire/화재 없음.png"></div>
+        <div class="HOME_Data">열림</div>
+        <div class="HOME_Data">열림</div>
+        <div class="HOME_Data">화재 안전</div>
+      </div>
+    </div>
+
+    <div class="Page" id="Room">
+      <h2>Room</h2>
+      <div class="Room_grid">
+        <div class="item">온도</div>
+        <div class="item">습도</div>
+        <div class="item">공기질</div>
+        <div class="item"><img class="picture" src="static/images/Temp/온도자름.png"></div>
+        <div class="item"><img class="picture" src="static/images/Hum/보통.png"></div>
+        <div class="item"><img class="picture" src="static/images/Air/보통.png"></div>
+        <div class="HOME_Data">12℃</div>
+        <div class="HOME_Data">56%</div>
+        <div class="HOME_Data">보통</div>
+      </div>
+    </div>
+
+    <div class="Page" id="Kitchen">
+      <h2>Kitchen</h2>
+      <div class="Kitchen_grid">
+        <div class="item">현관문</div>
+        <div class="item">창문</div>
+        <div class="item">화재</div>
+        <div class="item"><img class="picture" src="static/images/Door/현관문 열림.png"></div>
+        <div class="item"><img class="picture" src="static/images/Window/창문 열림.png"></div>
+        <div class="item"><img class="picture" src="static/images/Fire/화재 없음.png"></div>
+        <div class="HOME_Data">열림</div>
+        <div class="HOME_Data">열림</div>
+        <div class="HOME_Data">화재 안전</div>
+      </div>
+
+      <div class="Page" id="Living Room">
+        <h2 id="Living-title">Living Room</h2>
+        <div class="Living_grid">
+          <div class="item">온도</div>
+          <div class="item">습도</div>
+          <div class="item">공기질</div>
+          <div class="item"><img class="picture" src="static/images/Temp/온도자름.png"></div>
+          <div class="item"><img class="picture" src="static/images/Hum/보통.png"></div>
+          <div class="item"><img class="picture" src="static/images/Air/보통.png"></div>
+          <div class="HOME_Data">12℃</div>
+          <div class="HOME_Data">56%</div>
+          <div class="HOME_Data">보통</div>
+        </div>
     </div>
   </main>
 </body>

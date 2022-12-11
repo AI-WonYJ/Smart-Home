@@ -2,12 +2,15 @@ DHT11 온습도센서: http://jujc.yonam.ac.kr/lecture/ans_ict/aduino/5._dht11_s
 L9110 모터 드라이버: https://blog.naver.com/PostView.naver?blogId=roboholic84&logNo=221067084440&categoryNo=42&parentCategoryNo=0
 IR모션감지센서: https://www.hardcopyworld.com/?p=1141
 8xx32 도트 매트릭스: https://devicemart.blogspot.com/2019/04/8x32.html
+https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=no1_devicemart&logNo=221570315855
 I2C LCD: https://codingrun.com/119
 4x4 키패드: https://m.blog.naver.com/dokkosam/221750933418
 포토 트랜지스터: https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=thank2400&logNo=222024839082
 서보모터: https://www.basic4mcu.com/bbs/board.php?bo_table=gac&wr_id=4350
 도어락: https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=icbanq&logNo=221053467798
 74HC595 & 7 Segment Display: https://blog.naver.com/PostView.nhn?blogId=damtaja&logNo=220448940594
+IR리모컨: https://blog.naver.com/gongzipsa/222947850440
+MQ135: https://blog.naver.com/damtaja/222173390566
 
 
 

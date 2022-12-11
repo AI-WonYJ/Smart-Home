@@ -1,6 +1,7 @@
 # include <Keypad.h>  // 4x4 키패드 작동 헤더파일
 #include <LiquidCrystal_I2C.h>  // I2C_LCD 작동 헤더파일
 #include <Servo.h>  // 서보모터 작동 헤더파일
+#include "MQ135.h"
 
 // 4x4 키패드 설정
 const byte ROWS = 4;  // 행 개수 정의
@@ -32,7 +33,6 @@ int tru = 0;  // 패스워드 맞은 수
 int count = 0;
 char PW[4] {'1', '2', '3', '4'};
 int ch = -1;
-int del = 50;
 
 // 초음파센서 설정
 #define TRIG 31 //TRIG 핀 설정 (초음파 보내는 핀)
@@ -42,6 +42,14 @@ int distance = 0;
 // 스피커 설정
 #define BUTTON 53
 int speakerPin = 12;
+
+// MQ135
+//#define RLOAD 1000
+#define RZERO 1
+
+int door_state = 0;
+int lcd_state = 0;
+
 
 
 
@@ -62,8 +70,7 @@ void loop() {
   if(digitalRead(BUTTON) == HIGH) {
     tone(speakerPin,200,100);  //500: 음의 높낮이(주파수), 1000: 음의 지속시간(1초)
   }
-  distance = Distance_get();  
-  Serial.println(distance);
+  distance = Distance_get();
   if (distance <=20) {
     ch *= -1;
     tone(speakerPin,200,300);  //500: 음의 높낮이(주파수), 1000: 음의 지속시간(1초)
@@ -74,15 +81,16 @@ void loop() {
   if (ch == 1) {
     lcd.backlight();
     lcd.display();
+    lcd_state = 1;
   } else {
     Fa();
     lcd.noBacklight();
     lcd.noDisplay();
+    lcd_state = 0;
   }
   
   char key = keypad.getKey();
   if (key) {
-    Serial.println(key);
     lcd.setCursor(LCD_COL, 1);
     lcd.print(key);
     LCD_COL++ ;
@@ -106,8 +114,13 @@ void loop() {
     tru = 0;
     count = 0;
   }
-  delay(del);
+  Serial.print(door_state);
+  Serial.print("/");
+  Serial.println(lcd_state);
+  delay(50);
 }
+
+
 
 
 
@@ -127,17 +140,13 @@ int Distance_get() {
   digitalWrite(TRIG, LOW);
   duration = pulseIn (ECHO, HIGH);
   distance = duration * 17 / 1000; 
-  // Serial.println(duration );
-  Serial.print("\nDIstance : ");
-  Serial.print(distance);
-  Serial.println(" Cm");
 
   return distance;
 }
 
 void Su() {
+  door_state = 1;
   myServo.write(100);
-  Serial.println("Open the door");
   lcd.clear();
   lcd.home();
   lcd.print("Open the door");
@@ -146,8 +155,8 @@ void Su() {
 }
 
 void Fa() {
+  door_state = 0;
   myServo.write(0);
-  Serial.println("close the door");
   lcd.clear();
   lcd.home();
   lcd.print("Close the door");
@@ -159,7 +168,6 @@ void Fa() {
 void re() {
   tru = 0;
   count = 0;
-  Serial.println("password reset");
   lcd.clear();
   lcd.home();
   lcd.print("ReEnter Password");
