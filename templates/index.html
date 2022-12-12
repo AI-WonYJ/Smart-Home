@@ -4,10 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="refresh" content="1">
+  <!-- <meta http-equiv="refresh" content="1"> -->
   <title>Smart Home</title>
-  <link rel="stylesheet" href="static/css/1main.css">
-  <link rel="icon" type="image/png" sizes="16x16" href="static/images/favicon.png">
+  <link rel="stylesheet" href="static/css/main.css">
 
 </head>
 
@@ -60,7 +59,7 @@
 
         <div class="HOME_Data">{{Temperature}}℃</div>
         <div class="HOME_Data">{{Humidity}}%</div>
-        <div class="HOME_Data">보통<br><div class="Serve_Data">CO₂: 430</div></div>
+        <div class="HOME_Data">보통<br><div class="Serve_Data">CO₂: {{CO2}}</div></div>
 
         {% if Front == 0%}
         <div class="HOME_Data">외부 안전</div>

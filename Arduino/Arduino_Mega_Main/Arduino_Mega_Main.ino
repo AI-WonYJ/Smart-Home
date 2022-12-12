@@ -1,7 +1,6 @@
 # include <Keypad.h>  // 4x4 키패드 작동 헤더파일
 #include <LiquidCrystal_I2C.h>  // I2C_LCD 작동 헤더파일
 #include <Servo.h>  // 서보모터 작동 헤더파일
-#include "MQ135.h"
 
 // 4x4 키패드 설정
 const byte ROWS = 4;  // 행 개수 정의
@@ -43,13 +42,8 @@ int distance = 0;
 #define BUTTON 53
 int speakerPin = 12;
 
-// MQ135
-//#define RLOAD 1000
-#define RZERO 1
-
 int door_state = 0;
 int lcd_state = 0;
-
 
 
 
@@ -66,6 +60,8 @@ void setup() {
   delay(500);
 }
 
+
+
 void loop() {
   if(digitalRead(BUTTON) == HIGH) {
     tone(speakerPin,200,100);  //500: 음의 높낮이(주파수), 1000: 음의 지속시간(1초)
@@ -78,38 +74,38 @@ void loop() {
     lcd.display();
     delay(1000);
   }
-  if (ch == 1) {
+  if (ch == 1) {  // 사람이 감지 됐을 경우
     lcd.backlight();
     lcd.display();
     lcd_state = 1;
-  } else {
+  } else {  // 사람이 떠났을 경우
     Fa();
     lcd.noBacklight();
     lcd.noDisplay();
     lcd_state = 0;
   }
   
-  char key = keypad.getKey();
+  char key = keypad.getKey();  // 4x4 키패드 입력 값 가져옴
   if (key) {
     lcd.setCursor(LCD_COL, 1);
     lcd.print(key);
     LCD_COL++ ;
-    if(key == PW[count]) {
+    if(key == PW[count]) {  // 입력된 키가 맞을 경우
       count++;
       tru++;
-    } else if(key == '#') {
+    } else if(key == '#') {  // 재시작 버튼이 눌렸을 경우
       re();
       tru = 0;
       count = 0;
-    } else {
+    } else {  // 틀렸을 경우
       count++;
     }
   }
-  if (count == 4){
-    if(tru == 4) {
-      Su();
+  if (count == 4){  // 키가 4번 눌렸을 때
+    if(tru == 4) {  // 4개 키가 모두 맞을 때
+      Su();  // 문 열림
     } else {
-      Fa();
+      Fa();  // 문 닫힘
     }
     tru = 0;
     count = 0;
@@ -122,15 +118,6 @@ void loop() {
 
 
 
-
-
-
-
-
-
-
-
-
 int Distance_get() {
   long duration, distance;
   digitalWrite(TRIG, LOW);
@@ -138,13 +125,13 @@ int Distance_get() {
   digitalWrite(TRIG, HIGH);
   delayMicroseconds(10);
   digitalWrite(TRIG, LOW);
-  duration = pulseIn (ECHO, HIGH);
+  duration = pulseIn (ECHO, HIGH);  // 초음파센서로 앞에 사람이 있는지 없는지 판별
   distance = duration * 17 / 1000; 
 
   return distance;
 }
 
-void Su() {
+void Su() {  // 문 열기 함수
   door_state = 1;
   myServo.write(100);
   lcd.clear();
@@ -154,7 +141,7 @@ void Su() {
   lcd.print("Welcome!");
 }
 
-void Fa() {
+void Fa() {  // 문 닫기 함수
   door_state = 0;
   myServo.write(0);
   lcd.clear();
@@ -165,7 +152,7 @@ void Fa() {
   LCD_COL = 7;
 }
 
-void re() {
+void re() {  // 키패드 입력 초기화 함수
   tru = 0;
   count = 0;
   lcd.clear();
